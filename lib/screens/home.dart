@@ -26,10 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Restaurant App'),
-      ),
       body: 
+        
         Column(
           children: [
             ElevatedButton(
@@ -40,22 +38,32 @@ class _HomeScreenState extends State<HomeScreen> {
             _items.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
+                      padding: const EdgeInsets.only(left: 24.0, right: 24.0),
                       itemCount: _items.length,
                       itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            //   return DetailScreen(place: place);
-                            // }));
-                          },
-                          child: Card(
+                        return Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),	
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              //   return DetailScreen(place: place);
+                              // }));
+                            },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Expanded(
-                                  flex: 1,
-                                  // child: Hero(tag: "photo", child: Image.network(_items[index]["pictureID"])),
-                                  child: Image.network(_items[index]["pictureId"]),
+                                Container(
+                                  width: 200,
+                                  height: 120,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                                    image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(_items[index]["pictureId"]),
+                                    ),
+                                  ),
                                 ),
                                 Expanded(
                                   flex: 2,
@@ -65,12 +73,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(_items[index]["name"],
-                                          style: TextStyle(fontSize: 16.0),
+                                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                                         ),
-                                        SizedBox(
-                                          height: 10,
+                                        SizedBox(height: 10),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.location_on_sharp),
+                                            Text(_items[index]["city"])
+                                          ],
                                         ),
-                                        Text(_items[index]["city"]),
+                                        SizedBox(height: 10),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.star),
+                                            Text(_items[index]["rating"].toString())
+                                          ],
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -82,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   )
-                : Container()
+                : const Center(child: Text("Data kosong!"))
           ],
         ),
     );
