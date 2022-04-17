@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:restaurant_app/screens/detail.dart';
+import '../constants/color.dart';
+import '../screens/detail.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -14,12 +15,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List _items = [];
+  List _foundItems = [];
 
   Future readJson() async {
     final String response = await rootBundle.loadString('assets/local_restaurant.json');
     final data = await json.decode(response);
     setState(() {
       _items = data["restaurants"];
+      _foundItems = _items;
     });
   }
 
@@ -29,9 +32,26 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  void _runFilter(String enteredKeyword) {
+    List results = [];
+    if (enteredKeyword.isEmpty) {
+      results = _items;
+    } else {
+      results = _items
+          .where((resto) =>
+              resto["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    
+    setState(() {
+      _foundItems = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor,
       body: 
         Column(
           children: [
@@ -43,11 +63,8 @@ class _HomeScreenState extends State<HomeScreen> {
               // margin: EdgeInsets.only(top: 16.0),
               padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
               child: TextField(
-                  // onChanged: (value) {
-                  //   filterSearchResults(value);
-                  // },
-                  // controller: editingController,
-                  decoration: InputDecoration(
+                  onChanged: (value) => _runFilter(value),
+                  decoration: const InputDecoration(
                     labelText: "Search",
                     hintText: "Search",
                     prefixIcon: Icon(Icons.search),
@@ -57,13 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
             ),
-            _items.isNotEmpty
+            _foundItems.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-                      itemCount: _items.length,
+                      itemCount: _foundItems.length,
                       itemBuilder: (context, index) {
-                        final resto = _items[index];
+                        final resto = _foundItems[index];
                         return Card(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),	
@@ -127,7 +144,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   )
-                : const Center(child: Text("Data kosong!"))
+                : const Text(
+                      'No results found',
+                      style: TextStyle(fontSize: 24),
+                    ),
           ],
         ),
     );

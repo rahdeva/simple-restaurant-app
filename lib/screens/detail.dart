@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/constants/color.dart';
 
 class DetailScreen extends StatelessWidget{
   final resto;
@@ -7,8 +8,10 @@ class DetailScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    print(resto["menus"]["foods"]);
+    final foodsResto = resto["menus"]["foods"];
+    final drinksResto = resto["menus"]["drinks"];
     return Scaffold(
+      backgroundColor: bgColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -108,7 +111,7 @@ class DetailScreen extends StatelessWidget{
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 16.0),
+                margin: EdgeInsets.symmetric(vertical: 16.0),
                 padding: EdgeInsets.only(left: 24.0),
                 child: Text(
                   "Menu - Foods",
@@ -118,8 +121,38 @@ class DetailScreen extends StatelessWidget{
                   ),
                 )
               ),
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 1000, minHeight: 50.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: foodsResto.length,
+                  itemBuilder: (context, i) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[
+                            // color.withOpacity(0.7),
+                            // color,
+                            Color(0xffee0000),
+                            Color(0xffeeee00)
+                          ], // red to yellow
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 16.0, top: 6.0),
+                        child: Text(foodsResto[i]["name"], style: TextStyle(color: Colors.white),)
+                      ),
+                    );
+                  }
+                ),
+              ),
               Container(
-                margin: EdgeInsets.only(top: 16.0),
+                margin: EdgeInsets.symmetric(vertical: 16.0),
                 padding: EdgeInsets.only(left: 24.0),
                 child: Text(
                   "Menu - Drinks",
@@ -129,16 +162,34 @@ class DetailScreen extends StatelessWidget{
                   ),
                 )
               ),
-              Container(
-                margin: EdgeInsets.only(top: 16.0),
-                padding: EdgeInsets.only(left: 24.0),
-                child: Text(
-                  "Menu - Drinks",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
+              ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: 1000, minHeight: 50.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: drinksResto.length,
+                  itemBuilder: (context, i) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+                      height: 30,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: <Color>[
+                            Color(0xffeeee00),
+                            Color(0xffee0000),
+                          ], // red to yellow
+                          // tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 16.0, top: 6.0),
+                        child: Text(drinksResto[i]["name"], style: TextStyle(color: Colors.white),)
+                      ),
+                    );
+                  }
+                ),
               ),
             ],
           ),
