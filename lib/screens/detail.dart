@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../constants/color.dart';
 
 class DetailScreen extends StatelessWidget{
+  static const routeName = '/detail';
   final resto;
   
   DetailScreen({Key? key, required this.resto}) : super(key: key);
