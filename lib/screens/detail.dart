@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/constants/color.dart';
+import '../constants/color.dart';
 
 class DetailScreen extends StatelessWidget{
   final resto;
-
+  
   DetailScreen({Key? key, required this.resto}) : super(key: key);
 
   @override
@@ -127,19 +129,19 @@ class DetailScreen extends StatelessWidget{
                   shrinkWrap: true,
                   itemCount: foodsResto.length,
                   itemBuilder: (context, i) {
+                    final random = Random();
+                    Color colors = colorList[random.nextInt(colorList.length)];
                     return Container(
                       margin: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
                       height: 30,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: <Color>[
-                            // color.withOpacity(0.7),
-                            // color,
-                            Color(0xffee0000),
-                            Color(0xffeeee00)
-                          ], // red to yellow
+                          colors: [
+                            colors.withOpacity(0.7),
+                            colors,
+                          ],
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
@@ -168,16 +170,18 @@ class DetailScreen extends StatelessWidget{
                   shrinkWrap: true,
                   itemCount: drinksResto.length,
                   itemBuilder: (context, i) {
+                    final random = Random();
+                    Color colors = colorList[random.nextInt(colorList.length)];
                     return Container(
                       margin: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
                       height: 30,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: <Color>[
-                            Color(0xffeeee00),
-                            Color(0xffee0000),
+                            colors.withOpacity(0.7),
+                            colors,
                           ], // red to yellow
                           // tileMode: TileMode.repeated, // repeats the gradient over the canvas
                         ),
