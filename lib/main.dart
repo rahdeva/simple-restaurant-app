@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/screens/home.dart';
+import '../screens/home.dart';
+import '../screens/splash.dart';
 import '../screens/detail.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const HomeScreen(),
+      home: SplashScreen(),
       // initialRoute: HomeScreen.routeName,
       // routes: {
       //   NewsListPage.routeName: (context) => NewsListPage(),

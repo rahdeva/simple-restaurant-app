@@ -39,6 +39,24 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: Image.asset("assets/images/textLogo.png")
             ),
+            Container(
+              // margin: EdgeInsets.only(top: 16.0),
+              padding: EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+              child: TextField(
+                  // onChanged: (value) {
+                  //   filterSearchResults(value);
+                  // },
+                  // controller: editingController,
+                  decoration: InputDecoration(
+                    labelText: "Search",
+                    hintText: "Search",
+                    prefixIcon: Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(25.0))
+                    )
+                  ),
+                ),
+            ),
             _items.isNotEmpty
                 ? Expanded(
                     child: ListView.builder(
