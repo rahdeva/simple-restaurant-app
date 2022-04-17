@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import "dart:math";
 
 const Color bgColor =  Color(0xFFF2F2F2);
 const Color orangeColor =  Color(0xFFE55834);

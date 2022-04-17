@@ -7,7 +7,7 @@ class DetailScreen extends StatelessWidget{
   static const routeName = '/detail';
   final resto;
   
-  DetailScreen({Key? key, required this.resto}) : super(key: key);
+  const DetailScreen({Key? key, required this.resto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
