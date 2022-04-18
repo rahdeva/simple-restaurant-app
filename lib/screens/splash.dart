@@ -2,10 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/constants/color.dart';
 import 'package:restaurant_app/screens/onboarding.dart';
-import 'home.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/';
+
+  const SplashScreen({Key? key}) : super(key: key);
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

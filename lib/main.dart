@@ -20,10 +20,10 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: SplashScreen.routeName,
       routes: {
-        SplashScreen.routeName: (context) => SplashScreen(),
+        SplashScreen.routeName: (context) => const SplashScreen(),
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
-        DetailScreen.routeName: (context) => DetailScreen(resto: null),
+        DetailScreen.routeName: (context) => const DetailScreen(resto: null),
       },
     );
   }

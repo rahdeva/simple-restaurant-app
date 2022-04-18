@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/constants/color.dart';
+import '../constants/color.dart';
+import '../screens/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingItems extends StatelessWidget {
@@ -7,17 +8,29 @@ class OnboardingItems extends StatelessWidget {
   String title;
   String subtitle;
   String textButton;
-  Function onPress;
   PageController controller;
 
   OnboardingItems({Key? key, 
     required this.image, 
     required this.title,
     required this.subtitle,
-    required this.onPress,
     required this.textButton,
     required this.controller
   }) : super(key: key);
+
+  void onPress(context){
+    (textButton == "Next")
+      ? controller.nextPage(
+          duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut
+        )
+      : Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreen()
+          )
+        )
+      ;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +80,7 @@ class OnboardingItems extends StatelessWidget {
                     primary: orangeColor,
                     onPrimary: Colors.white,
                     shape: const StadiumBorder()),
-                onPressed: (){},
+                onPressed: () => onPress(context),
                 child: Text(
                   textButton,
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
