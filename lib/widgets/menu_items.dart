@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/color.dart';
 
 class MenuItems extends StatelessWidget {
-  final menu;
+  final menu; 
 
   const MenuItems({Key? key, required this.menu}) : super(key: key);
 
