@@ -32,7 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (enteredKeyword.isEmpty) {
       results = _items;
     } else {
-      results = _items.where((resto) => resto["name"].toLowerCase().contains(enteredKeyword.toLowerCase())).toList();
+      results = _items.where(
+        (resto) => resto["name"].toLowerCase().contains(enteredKeyword.toLowerCase())
+      ).toList();
     }
     
     setState(() {

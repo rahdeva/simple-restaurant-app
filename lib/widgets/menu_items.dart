@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/color.dart';
 
 class MenuItems extends StatelessWidget {
-  final menu; 
+  final List menu; 
 
   const MenuItems({Key? key, required this.menu}) : super(key: key);
 
@@ -12,6 +12,7 @@ class MenuItems extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: 1000, minHeight: 50.0),
       child: ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemCount: menu.length,
         itemBuilder: (context, i) {

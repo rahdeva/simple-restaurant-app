@@ -8,7 +8,7 @@ class OnboardingItems extends StatelessWidget {
   String title;
   String subtitle;
   String textButton;
-  PageController controller;
+  final PageController controller;
 
   OnboardingItems({Key? key, 
     required this.image, 
