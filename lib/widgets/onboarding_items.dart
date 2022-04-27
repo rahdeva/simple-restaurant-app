@@ -3,6 +3,7 @@ import '../constants/color.dart';
 import '../screens/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+// ignore: must_be_immutable
 class OnboardingItems extends StatelessWidget {
   String image;
   String title;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/screens/detail.dart';
 
+// ignore: must_be_immutable
 class RestaurantItems extends StatelessWidget {
   List resto;
   int index;
