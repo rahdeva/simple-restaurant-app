@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/color.dart';
+import '../common/color.dart';
 import '../screens/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

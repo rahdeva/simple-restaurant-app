@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/constants/color.dart';
+import 'package:restaurant_app/common/color.dart';
 import 'package:restaurant_app/screens/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {

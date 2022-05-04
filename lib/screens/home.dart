@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../constants/color.dart';
+import '../common/color.dart';
 import '../widgets/resto_items.dart';
 
 class HomeScreen extends StatefulWidget {

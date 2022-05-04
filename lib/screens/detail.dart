@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/widgets/menu_items.dart';
-import '../constants/color.dart';
+import '../common/color.dart';
 
 class DetailScreen extends StatelessWidget{
   static const routeName = '/detail';
