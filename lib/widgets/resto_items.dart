@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/screens/detail.dart';
+import '../data/model/restaurant.dart';
+import '../screens/detail.dart';
 
-// ignore: must_be_immutable
 class RestaurantItems extends StatelessWidget {
-  List resto;
-  int index;
+  final Restaurant resto;
+  final String picsURL = "https://restaurant-api.dicoding.dev/images/medium/";
 
-  RestaurantItems(this.resto, this.index, {Key? key}) : super(key: key);
+  const RestaurantItems({required this.resto});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class RestaurantItems extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DetailScreen(resto: resto[index]);
+            return DetailScreen();
           }));
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Hero(
-              tag: resto[index]["id"],
+              tag: resto.id!,
               child: Container(
                 width: 200,
                 height: 120,
@@ -32,7 +32,7 @@ class RestaurantItems extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: NetworkImage(resto[index]["pictureId"]),
+                    image: NetworkImage(picsURL + resto.pictureId!),
                   ),
                 ),
               ),
@@ -46,7 +46,7 @@ class RestaurantItems extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      resto[index]["name"],
+                      resto.name!,
                       style: const TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
@@ -54,14 +54,14 @@ class RestaurantItems extends StatelessWidget {
                     Row(
                       children: [
                         const Icon(Icons.location_on_sharp),
-                        Text(resto[index]["city"])
+                        Text(resto.city!)
                       ],
                     ),
                     const SizedBox(height: 10),
                     Row(
                       children: [
                         const Icon(Icons.star),
-                        Text(resto[index]["rating"].toString())
+                        Text(resto.rating.toString())
                       ],
                     ),
                   ],

@@ -1,68 +1,56 @@
-class Restaurant {
-  bool? error;
-  String? message;
-  int? count;
-  List<Restaurants>? restaurants;
+class RestaurantResult {
+    RestaurantResult({
+        required this.error,
+        required this.message,
+        required this.count,
+        required this.restaurants,
+    });
 
-  Restaurant({this.error, this.message, this.count, this.restaurants});
+    bool error;
+    String message;
+    int count;
+    List<Restaurant> restaurants;
 
-  Restaurant.fromJson(Map<String, dynamic> json) {
-    error = json['error'];
-    message = json['message'];
-    count = json['count'];
-    if (json['restaurants'] != null) {
-      restaurants = <Restaurants>[];
-      json['restaurants'].forEach((v) {
-        restaurants!.add(Restaurants.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['error'] = error;
-    data['message'] = message;
-    data['count'] = count;
-    if (restaurants != null) {
-      data['restaurants'] = restaurants!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+    factory RestaurantResult.fromJson(Map<String, dynamic> json) => RestaurantResult(
+        error: json["error"],
+        message: json["message"],
+        count: json["count"],
+        restaurants: List<Restaurant>.from((json["restaurants"] as List)
+          .map((x) => Restaurant.fromJson(x))
+          .where((restaurant) => 
+            restaurant.id != null &&
+            restaurant.name != null &&
+            restaurant.description != null &&
+            restaurant.pictureId != null &&
+            restaurant.city != null &&
+            restaurant.rating != null
+          )),
+    );
 }
 
-class Restaurants {
-  String? id;
-  String? name;
-  String? description;
-  String? pictureId;
-  String? city;
-  double? rating;
+class Restaurant {
+    Restaurant({
+        required this.id,
+        required this.name,
+        required this.description,
+        required this.pictureId,
+        required this.city,
+        required this.rating,
+    });
 
-  Restaurants(
-      {this.id,
-      this.name,
-      this.description,
-      this.pictureId,
-      this.city,
-      this.rating});
+    String? id;
+    String? name;
+    String? description;
+    String? pictureId;
+    String? city;
+    double? rating;
 
-  Restaurants.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    description = json['description'];
-    pictureId = json['pictureId'];
-    city = json['city'];
-    rating = json['rating'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['name'] = name;
-    data['description'] = description;
-    data['pictureId'] = pictureId;
-    data['city'] = city;
-    data['rating'] = rating;
-    return data;
-  }
+    factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+        id: json["id"],
+        name: json["name"],
+        description: json["description"],
+        pictureId: json["pictureId"],
+        city: json["city"],
+        rating: json["rating"].toDouble(),
+    );
 }
