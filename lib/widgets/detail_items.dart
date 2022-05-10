@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/widgets/customers_reviews.dart';
 import 'package:restaurant_app/widgets/menu_items.dart';
 import '../data/model/resto_detail.dart';
 
@@ -124,7 +125,30 @@ class DetailItems extends StatelessWidget {
               ),
             )),
         MenuItems(menu: detail.menus.drinks),
+        TitleWidgets(),
+        CustomerReviews(review: detail.customerReviews),
+        const SizedBox(height: 24,)
       ],
     );
+  }
+}
+
+class TitleWidgets extends StatelessWidget {
+  const TitleWidgets({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.symmetric(vertical: 16.0),
+        padding: const EdgeInsets.only(left: 24.0),
+        child: const Text(
+          "Customer Reviews",
+          style: TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ));
   }
 }
