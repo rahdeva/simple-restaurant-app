@@ -17,7 +17,7 @@ class RestaurantItems extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DetailScreen();
+            return DetailScreen(id: resto.id!);
           }));
         },
         child: Row(

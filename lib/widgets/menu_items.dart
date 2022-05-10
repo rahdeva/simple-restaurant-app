@@ -1,14 +1,16 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/data/model/resto_detail.dart';
 import '../common/color.dart';
 
 class MenuItems extends StatelessWidget {
-  final List menu; 
+  final List<Category> menu; 
 
   const MenuItems({Key? key, required this.menu}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    
     return ConstrainedBox(
       constraints: const BoxConstraints(maxHeight: 1000, minHeight: 50.0),
       child: ListView.builder(
@@ -35,7 +37,7 @@ class MenuItems extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(left: 16.0, top: 6.0),
               child: Text(
-                menu[i]["name"],
+                menu[i].name!,
                 style: const TextStyle(color: Colors.white),
               )
             ),
