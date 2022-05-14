@@ -30,7 +30,7 @@ class RestoProvider extends ChangeNotifier {
       if (resto.restaurants.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();
-        return _message = 'Empty Data';
+        return _message = 'Data kosong';
       } else {
         _state = ResultState.hasData;
         notifyListeners();
@@ -39,7 +39,7 @@ class RestoProvider extends ChangeNotifier {
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();
-      return _message = 'Error --> $e';
+      return _message = 'Whoops! mohon periksa koneksi internet Anda';
     }
   }
 }

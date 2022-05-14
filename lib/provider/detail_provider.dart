@@ -32,7 +32,7 @@ class DetailProvider extends ChangeNotifier {
     if (resto.error) {
       _state = ResultState.error;
       notifyListeners();
-      return _message = 'Error';
+      return _message = 'Whoops! mohon periksa koneksi internet Anda';
     } else {
       _state = ResultState.hasData;
       notifyListeners();
