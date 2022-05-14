@@ -15,6 +15,7 @@ class RestoList extends StatelessWidget {
         } else if (state.state == ResultState.HasData) {
           return Expanded(
             child: ListView.builder(
+              // physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.only(left: 24.0, right: 24.0),
               shrinkWrap: true,
               itemCount: state.result.restaurants.length,

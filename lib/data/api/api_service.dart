@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:restaurant_app/data/model/resto_detail.dart';
+import '../model/resto_detail.dart';
+import '../model/search_restaurants.dart';
 import '../model/restaurant.dart';
 
 class ApiService {
@@ -24,10 +25,11 @@ class ApiService {
     }
   }
 
-  Future<RestaurantResult> searchResto(final String _query) async {
-    final response = await http.get(Uri.parse(_baseUrl + "/search?q=" + _query));
+  Future<SearchRestaurant> searchResto(final String _query) async {
+    final String _newQuery = _query.replaceAll(' ', '%20');
+    final response = await http.get(Uri.parse(_baseUrl + "search?q=" + _newQuery));
     if (response.statusCode == 200) {
-      return RestaurantResult.fromJson(json.decode(response.body));
+      return SearchRestaurant.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to search');
     }
