@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../data/model/restaurant.dart';
+import '../data/model/search_restaurants.dart';
 import '../screens/detail.dart';
 
-class RestaurantItems extends StatelessWidget {
+class SearchResultItems extends StatelessWidget {
   final Restaurant resto;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/medium/";
 
-  const RestaurantItems({Key? key, required this.resto}) : super(key: key);
+  const SearchResultItems({Key? key, required this.resto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

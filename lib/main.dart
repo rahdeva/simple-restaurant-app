@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../screens/search.dart';
 import '../screens/onboarding.dart';
 import '../screens/home.dart';
 import '../screens/splash.dart';
@@ -23,7 +24,10 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => const SplashScreen(),
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
-        // DetailScreen.routeName: (context) => const DetailScreen(id: null),
+        DetailScreen.routeName: (context) => DetailScreen(
+          id: ModalRoute.of(context)?.settings.arguments as String,
+        ),
+        SearchScreen.routeName: (context) => const SearchScreen(),
       },
     );
   }

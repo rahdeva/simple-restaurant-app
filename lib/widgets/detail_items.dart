@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_app/data/model/restaurant.dart';
+import 'package:restaurant_app/widgets/customers_reviews.dart';
+import 'package:restaurant_app/widgets/menu_items.dart';
+import '../data/model/resto_detail.dart';
 
 class DetailItems extends StatelessWidget {
-  final Restaurant resto;
+  final Restaurant detail;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/large/";
 
-  const DetailItems({required this.resto});
+  const DetailItems({required this.detail, Key? key})  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +17,14 @@ class DetailItems extends StatelessWidget {
         Stack(
           children: <Widget>[
             Hero(
-                tag: resto.id!,
+                tag: detail.id,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 320,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(picsURL + resto.pictureId!),
+                        image: NetworkImage(picsURL + detail.pictureId),
                       ),
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10.0),
@@ -57,7 +59,7 @@ class DetailItems extends StatelessWidget {
             margin: const EdgeInsets.only(top: 24.0),
             padding: const EdgeInsets.only(left: 24.0),
             child: Text(
-              resto.name!,
+              detail.name,
               style: const TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
@@ -71,59 +73,55 @@ class DetailItems extends StatelessWidget {
               Row(
                 children: [
                   const Icon(Icons.location_on_sharp),
-                  Text(resto.city!)
+                  Text(detail.city)
                 ],
               ),
               Row(
                 children: [
                   const Icon(Icons.star),
-                  Text(resto.rating!.toString())
+                  Text(detail.rating.toString())
                 ],
               ),
             ],
           ),
         ),
-        Container(
-            margin: const EdgeInsets.only(top: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Description",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        const TitleWidgets(text: "Description"),
         Container(
           margin: const EdgeInsets.only(top: 8.0),
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Text(
-            resto.description!,
+            detail.description,
             textAlign: TextAlign.justify,
           ),
         ),
-        Container(
-            margin: const EdgeInsets.symmetric(vertical: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Menu - Foods",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
-        // MenuItems(menu: foodsResto),
-        Container(
-            margin: const EdgeInsets.symmetric(vertical: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Menu - Drinks",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
-        // MenuItems(menu: drinksResto),
+        const TitleWidgets(text: "Menu - Foods"),
+        MenuItems(menu: detail.menus.foods),
+        const TitleWidgets(text: "Menu - Drinks"),
+        MenuItems(menu: detail.menus.drinks),
+        const TitleWidgets(text: "Customer Reviews"),
+        CustomerReviews(review: detail.customerReviews, id: detail.id),
+        const SizedBox(height: 24,)
       ],
+    );
+  }
+}
+
+class TitleWidgets extends StatelessWidget {
+  final String text;
+  const TitleWidgets({Key? key, required this.text}) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.only(left: 24.0),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+        ),
+      )
     );
   }
 }

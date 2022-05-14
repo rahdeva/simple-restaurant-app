@@ -1,14 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../model/resto_detail.dart';
+import '../model/search_restaurants.dart';
 import '../model/restaurant.dart';
 
 class ApiService {
   final String _baseUrl = 'https://restaurant-api.dicoding.dev/';
-  final String _category = 'business';
-  final String _country = 'id';
-
-  final String _id = 'rqdv5juczeskfw1e867';
-  final String _query = 'Makan';
   
   Future<RestaurantResult> getRestoList() async {
     final response = await http.get(Uri.parse(_baseUrl + "list"));
@@ -19,26 +16,34 @@ class ApiService {
     }
   }
 
-  Future<RestaurantResult> getRestoDetail() async {
+  Future<RestaurantDetail> getRestoDetail(final String _id) async {
     final response = await http.get(Uri.parse(_baseUrl + "detail/" + _id));
     if (response.statusCode == 200) {
-      return RestaurantResult.fromJson(json.decode(response.body));
+      return RestaurantDetail.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to get details');
     }
   }
 
-  Future<RestaurantResult> searchResto() async {
-    final response = await http.get(Uri.parse(_baseUrl + "/search?q=" + _query));
+  Future<SearchRestaurant> searchResto(final String _query) async {
+    final String _newQuery = _query.replaceAll(' ', '%20');
+    final response = await http.get(Uri.parse(_baseUrl + "search?q=" + _newQuery));
     if (response.statusCode == 200) {
-      return RestaurantResult.fromJson(json.decode(response.body));
+      return SearchRestaurant.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed to search');
     }
   }
-
-  Future<RestaurantResult> postReview() async {
-    final response = await http.get(Uri.parse(_baseUrl + "/review"));
+  
+  Future<RestaurantResult> postReview(String name, String id, String review) async {
+    final response = await http.post(
+      Uri.parse(_baseUrl + "review"), 
+      body: json.encode({
+        'id': id,
+        'name': name,
+        'review': review,
+      }),
+    );
     if (response.statusCode == 200) {
       return RestaurantResult.fromJson(json.decode(response.body));
     } else {
