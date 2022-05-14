@@ -21,14 +21,14 @@ class DetailScreen extends StatelessWidget{
           child: SingleChildScrollView(
             child: Consumer<DetailProvider>(
               builder: (context, state, _) {
-                if (state.state == ResultState.Loading) {
+                if (state.state == ResultState.loading) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (state.state == ResultState.HasData) {
+                } else if (state.state == ResultState.hasData) {
                   var detail = state.result.restaurant;
                   return DetailItems(detail: detail);
-                } else if (state.state == ResultState.NoData) {
+                } else if (state.state == ResultState.noData) {
                   return Center(child: Text(state.message));
-                } else if (state.state == ResultState.Error) {
+                } else if (state.state == ResultState.error) {
                   return Center(child: Text(state.message));
                 } else {
                   return const Center(child: Text(''));

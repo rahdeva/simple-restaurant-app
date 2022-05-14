@@ -10,12 +10,11 @@ class RestoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RestoProvider>(
       builder: (context, state, _) {
-        if (state.state == ResultState.Loading) {
+        if (state.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state.state == ResultState.HasData) {
+        } else if (state.state == ResultState.hasData) {
           return Expanded(
             child: ListView.builder(
-              // physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.only(left: 24.0, right: 24.0),
               shrinkWrap: true,
               itemCount: state.result.restaurants.length,
@@ -25,9 +24,9 @@ class RestoList extends StatelessWidget {
               },
             ),
           );
-        } else if (state.state == ResultState.NoData) {
+        } else if (state.state == ResultState.noData) {
           return Center(child: Text(state.message));
-        } else if (state.state == ResultState.Error) {
+        } else if (state.state == ResultState.error) {
           return Center(child: Text(state.message));
         } else {
           return const Center(child: Text(''));

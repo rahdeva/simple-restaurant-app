@@ -1,13 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../screens/search.dart';
 import '../data/api/api_service.dart';
 import '../provider/resto_provider.dart';
 import '../widgets/resto_list.dart';
 import '../common/color.dart';
-import '../widgets/resto_items.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -27,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             GestureDetector(
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (BuildContext context) => SearchScreen()
+                  builder: (BuildContext context) => const SearchScreen()
                 )
               ),
               child: Container(
@@ -49,6 +46,7 @@ class HomeScreen extends StatelessWidget {
               create: (_) => RestoProvider(apiService: ApiService()),
               child: const RestoList(),
             ),
+            const SizedBox(height: 24.0,)
           ],
         ),
     );

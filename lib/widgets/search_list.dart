@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/search_provider.dart';
 import '../widgets/search_items.dart';
-import '../widgets/resto_items.dart';
 
 class SearchResultList extends StatelessWidget {
   const SearchResultList({Key? key }) : super(key: key);
@@ -11,9 +10,9 @@ class SearchResultList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SearchProvider>(
       builder: (context, state, _) {
-        if (state.state == ResultState.Loading) {
+        if (state.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state.state == ResultState.HasData) {
+        } else if (state.state == ResultState.hasData) {
           return ListView.builder(
             padding: const EdgeInsets.only(left: 24.0, right: 24.0),
             shrinkWrap: true,
@@ -23,9 +22,9 @@ class SearchResultList extends StatelessWidget {
               return SearchResultItems(resto: resto);
             },
           );
-        } else if (state.state == ResultState.NoData) {
+        } else if (state.state == ResultState.noData) {
           return Center(child: Text(state.message));
-        } else if (state.state == ResultState.Error) {
+        } else if (state.state == ResultState.error) {
           return Center(child: Text(state.message));
         } else {
           return const Center(child: Text(''));

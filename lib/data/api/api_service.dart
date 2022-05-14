@@ -35,8 +35,15 @@ class ApiService {
     }
   }
   
-  Future<RestaurantResult> postReview() async {
-    final response = await http.post(Uri.parse(_baseUrl + "/review"));
+  Future<RestaurantResult> postReview(String name, String id, String review) async {
+    final response = await http.post(
+      Uri.parse(_baseUrl + "review"), 
+      body: json.encode({
+        'id': id,
+        'name': name,
+        'review': review,
+      }),
+    );
     if (response.statusCode == 200) {
       return RestaurantResult.fromJson(json.decode(response.body));
     } else {

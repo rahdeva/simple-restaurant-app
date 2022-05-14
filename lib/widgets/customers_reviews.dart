@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import '../widgets/add_reviews.dart';
 import '../data/model/resto_detail.dart';
 
 class CustomerReviews extends StatelessWidget {
   final List<CustomerReview> review; 
+  final String id;
 
-  const CustomerReviews({Key? key, required this.review}) : super(key: key);
+  const CustomerReviews({Key? key, required this.review, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +33,7 @@ class CustomerReviews extends StatelessWidget {
             );
           }
         ),
-
-
+        AddReviews(ctx: context, id: id)
       ]
     );
   }

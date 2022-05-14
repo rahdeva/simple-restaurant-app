@@ -7,7 +7,7 @@ class DetailItems extends StatelessWidget {
   final Restaurant detail;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/large/";
 
-  const DetailItems({required this.detail});
+  const DetailItems({required this.detail, Key? key})  : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -85,16 +85,7 @@ class DetailItems extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-            margin: const EdgeInsets.only(top: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Description",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        const TitleWidgets(text: "Description"),
         Container(
           margin: const EdgeInsets.only(top: 8.0),
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -103,30 +94,12 @@ class DetailItems extends StatelessWidget {
             textAlign: TextAlign.justify,
           ),
         ),
-        Container(
-            margin: const EdgeInsets.symmetric(vertical: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Menu - Foods",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        const TitleWidgets(text: "Menu - Foods"),
         MenuItems(menu: detail.menus.foods),
-        Container(
-            margin: const EdgeInsets.symmetric(vertical: 16.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: const Text(
-              "Menu - Drinks",
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+        const TitleWidgets(text: "Menu - Drinks"),
         MenuItems(menu: detail.menus.drinks),
-        TitleWidgets(),
-        CustomerReviews(review: detail.customerReviews),
+        const TitleWidgets(text: "Customer Reviews"),
+        CustomerReviews(review: detail.customerReviews, id: detail.id),
         const SizedBox(height: 24,)
       ],
     );
@@ -134,21 +107,21 @@ class DetailItems extends StatelessWidget {
 }
 
 class TitleWidgets extends StatelessWidget {
-  const TitleWidgets({
-    Key? key,
-  }) : super(key: key);
-
+  final String text;
+  const TitleWidgets({Key? key, required this.text}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.symmetric(vertical: 16.0),
-        padding: const EdgeInsets.only(left: 24.0),
-        child: const Text(
-          "Customer Reviews",
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ));
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      padding: const EdgeInsets.only(left: 24.0),
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 18.0,
+          fontWeight: FontWeight.bold,
+        ),
+      )
+    );
   }
 }
