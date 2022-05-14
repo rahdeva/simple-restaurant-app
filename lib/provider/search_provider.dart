@@ -28,7 +28,7 @@ class SearchProvider extends ChangeNotifier {
       if (search.restaurants.isEmpty) {
         _state = ResultState.noData;
         notifyListeners();
-        return _message = 'Empty Data';
+        return _message = 'Data yang Anda cari tidak ada';
       } else {
         _state = ResultState.hasData;
         notifyListeners();
@@ -37,7 +37,7 @@ class SearchProvider extends ChangeNotifier {
     } catch (e) {
       _state = ResultState.error;
       notifyListeners();
-      return _message = 'Error --> $e';
+      return _message = 'Whoops! mohon periksa koneksi internet Anda';
     }
   }
 }
