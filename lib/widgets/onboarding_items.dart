@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:restaurant_app/main.dart';
+import 'package:restaurant_app/provider/bottom_navigation_provider.dart';
 import '../common/color.dart';
-import '../screens/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 // ignore: must_be_immutable
@@ -27,8 +29,11 @@ class OnboardingItems extends StatelessWidget {
         )
       : Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (BuildContext context) => const HomeScreen()
-          )
+            builder: (BuildContext context) => ChangeNotifierProvider<BottomNavigationBarProvider>(
+              create: (context) => BottomNavigationBarProvider(),
+              child: BottomNavigationBarResto(),
+            ),
+          ),
         )
       ;
   }

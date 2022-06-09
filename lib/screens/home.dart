@@ -46,7 +46,6 @@ class HomeScreen extends StatelessWidget {
               create: (_) => RestoProvider(apiService: ApiService()),
               child: const RestoList(),
             ),
-            const SizedBox(height: 24.0,)
           ],
         ),
     );
