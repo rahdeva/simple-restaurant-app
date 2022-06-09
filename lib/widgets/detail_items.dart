@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/widgets/customers_reviews.dart';
+import 'package:restaurant_app/widgets/favorite_button.dart';
 import 'package:restaurant_app/widgets/menu_items.dart';
 import '../data/model/resto_detail.dart';
 
@@ -56,14 +57,20 @@ class DetailItems extends StatelessWidget {
           ],
         ),
         Container(
-            margin: const EdgeInsets.only(top: 24.0),
-            padding: const EdgeInsets.only(left: 24.0),
-            child: Text(
-              detail.name,
-              style: const TextStyle(
-                fontSize: 30.0,
-                fontWeight: FontWeight.bold,
-              ),
+            margin: const EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
+            // padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  detail.name,
+                  style: const TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                FavoriteButton()
+              ],
             )),
         Container(
           margin: const EdgeInsets.only(top: 8.0),
