@@ -50,7 +50,7 @@ class _BottomNavigationBarRestoState extends State<BottomNavigationBarResto> {
   var currentTab = [
     const HomeScreen(),
     const FavoriteScreen(),
-    const SettingScreen(),
+    SettingScreen(),
   ];
 
   @override
