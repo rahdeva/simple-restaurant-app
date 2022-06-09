@@ -1,4 +1,11 @@
+import 'dart:io';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import '../common/navigation.dart';
+import '../provider/scheduling_provider.dart';
+import '../utils/background_service.dart';
+import '../utils/notification_helper.dart';
 import '../screens/favorite.dart';
 import '../screens/setting.dart';
 import '../provider/bottom_navigation_provider.dart';
@@ -9,7 +16,22 @@ import '../screens/splash.dart';
 import '../screens/detail.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+  
+  _service.initializeIsolate();
+  
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+
   runApp(const MyApp());
 }
 
@@ -19,6 +41,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Restaurant App',
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -47,11 +70,23 @@ class BottomNavigationBarResto extends StatefulWidget {
 }
 
 class _BottomNavigationBarRestoState extends State<BottomNavigationBarResto> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  
   var currentTab = [
     const HomeScreen(),
     const FavoriteScreen(),
-    SettingScreen(),
+    ChangeNotifierProvider<SchedulingProvider>(
+      create: (_) => SchedulingProvider(),
+      child: SettingScreen(),
+    ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectNotificationSubject(
+        DetailScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,4 +115,11 @@ class _BottomNavigationBarRestoState extends State<BottomNavigationBarResto> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
+  }
+
 }

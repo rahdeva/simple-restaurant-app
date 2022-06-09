@@ -8,10 +8,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_app/common/color.dart';
+import 'package:restaurant_app/provider/scheduling_provider.dart';
+import 'package:restaurant_app/widgets/custom_dialog.dart';
 import 'package:restaurant_app/widgets/platform_widget.dart';
 
 class SettingScreen extends StatelessWidget {
   static const String settingsTitle = 'Settings';
+
+  const SettingScreen({Key? key}) : super(key: key);
 
   Widget _buildAndroid(BuildContext context) {
     return Scaffold(
@@ -33,7 +37,7 @@ class SettingScreen extends StatelessWidget {
   }
 
   Widget _buildList(BuildContext context) {
-          return ListView(
+    return ListView(
           children: [
             Material(
               child: ListTile(
@@ -49,25 +53,32 @@ class SettingScreen extends StatelessWidget {
             Material(
               child: ListTile(
                 title: Text('Scheduling News'),
-                // trailing: Consumer<SchedulingProvider>(
-                //   builder: (context, scheduled, _) {
-                //     return Switch.adaptive(
-                //       value: provider.isDailyNewsActive,
-                //       onChanged: (value) async {
-                //         if (Platform.isIOS) {
-                //           customDialog(context);
-                //         } else {
-                //           scheduled.scheduledNews(value);
-                //           provider.enableDailyNews(value);
-                //         }
-                //       },
-                //     );
-                //   },
-                // ),
+                trailing: Consumer<SchedulingProvider>(
+                  builder: (context, scheduled, _) {
+                    return Switch.adaptive(
+                      value: scheduled.isScheduled,
+                      onChanged: (value) async {
+                        if (Platform.isIOS) {
+                          customDialog(context);
+                        } else {
+                          scheduled.scheduledNews(value);
+                        }
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],
-        );
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return PlatformWidget(
+      androidBuilder: _buildAndroid,
+      iosBuilder: _buildIos,
+    );
   }
 
   // Widget _buildList(BuildContext context) {
@@ -92,13 +103,12 @@ class SettingScreen extends StatelessWidget {
   //               trailing: Consumer<SchedulingProvider>(
   //                 builder: (context, scheduled, _) {
   //                   return Switch.adaptive(
-  //                     value: provider.isDailyNewsActive,
+  //                     value: scheduled.isScheduled,
   //                     onChanged: (value) async {
   //                       if (Platform.isIOS) {
   //                         customDialog(context);
   //                       } else {
   //                         scheduled.scheduledNews(value);
-  //                         provider.enableDailyNews(value);
   //                       }
   //                     },
   //                   );
@@ -112,11 +122,5 @@ class SettingScreen extends StatelessWidget {
   //   );
   // }
 
-  @override
-  Widget build(BuildContext context) {
-    return PlatformWidget(
-      androidBuilder: _buildAndroid,
-      iosBuilder: _buildIos,
-    );
-  }
+  
 }
