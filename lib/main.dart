@@ -77,7 +77,7 @@ class _BottomNavigationBarRestoState extends State<BottomNavigationBarResto> {
     const FavoriteScreen(),
     ChangeNotifierProvider<SchedulingProvider>(
       create: (_) => SchedulingProvider(),
-      child: SettingScreen(),
+      child: const SettingScreen(),
     ),
   ];
 

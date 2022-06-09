@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 import 'dart:isolate';
-import 'package:restaurant_app/data/model/restaurant.dart';
 
 import '../main.dart';
 import '../data/api/api_service.dart';
@@ -11,7 +10,7 @@ final ReceivePort port = ReceivePort();
 
 class BackgroundService {
   static BackgroundService? _instance;
-  static String _isolateName = 'isolate';
+  static const String _isolateName = 'isolate';
   static SendPort? _uiSendPort;
 
   BackgroundService._internal() {
@@ -28,9 +27,8 @@ class BackgroundService {
   }
 
   static Future<void> callback() async {
-    print('Alarm fired!');
     final NotificationHelper _notificationHelper = NotificationHelper();
-    var result = await ApiService().getRestoList() as RestaurantResult;
+    var result = await ApiService().getRestoList();
     final _random = Random();
     var _restaurantData = result.restaurants[_random.nextInt(result.restaurants.length)];
     await _notificationHelper.showNotification(

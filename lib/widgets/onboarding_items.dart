@@ -31,7 +31,7 @@ class OnboardingItems extends StatelessWidget {
           MaterialPageRoute(
             builder: (BuildContext context) => ChangeNotifierProvider<BottomNavigationBarProvider>(
               create: (context) => BottomNavigationBarProvider(),
-              child: BottomNavigationBarResto(),
+              child: const BottomNavigationBarResto(),
             ),
           ),
         )
