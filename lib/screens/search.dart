@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_app/common/color.dart';
-import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/search_provider.dart';
 import 'package:restaurant_app/widgets/search_list.dart';
 
@@ -19,23 +17,21 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<SearchProvider>(
-      create: (_) => SearchProvider(apiService: ApiService()),
-      child: Consumer<SearchProvider>(builder: (context, state, _) {
+    return Consumer<SearchProvider>
+      (builder: (context, state, _) {
         return Scaffold(
-          backgroundColor: bgColor,
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () => Navigator.of(context).pop(),
-            ), 
+            ),
             title: const Text("Search Restaurants"),
             iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
-            elevation: 0, 
+            elevation: 0,
             titleTextStyle: const TextStyle(
-              color: Colors.black, 
-              fontSize: 18.0, 
+              color: Colors.black,
+              fontSize: 18.0,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -62,13 +58,13 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               Expanded(
                 child: query.isEmpty
-                  ? const Center(child: Text('Cari restaurant favoritmu!'))
-                  : const SearchResultList(),
+                    ? const Center(child: Text('Cari restaurant favoritmu!'))
+                    : const SearchResultList(),
               )
             ],
           ),
         );
-      }),
+      }
     );
   }
 }

@@ -1,7 +1,14 @@
 import 'dart:io';
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:restaurant_app/provider/search_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../data/preferences/preferences_helper.dart';
+import '../data/api/api_service.dart';
+import '../provider/resto_provider.dart';
+import '../provider/preferences_provider.dart';
 import '../common/navigation.dart';
 import '../provider/scheduling_provider.dart';
 import '../utils/background_service.dart';
@@ -40,24 +47,59 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      title: 'Restaurant App',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      initialRoute: SplashScreen.routeName,
-      routes: {
-        SplashScreen.routeName: (context) => const SplashScreen(),
-        OnboardingScreen.routeName: (context) => const OnboardingScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen(),
-        DetailScreen.routeName: (context) => DetailScreen(
-          id: ModalRoute.of(context)?.settings.arguments as String,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<RestoProvider>(
+          create: (_) => RestoProvider(apiService: ApiService()),
         ),
-        SearchScreen.routeName: (context) => const SearchScreen(),
-        // setting
-        // favorite
-      },
+        ChangeNotifierProvider<SearchProvider>(
+          create: (_) => SearchProvider(apiService: ApiService()),
+        ),
+        ChangeNotifierProvider(create: (_) => SchedulingProvider()),
+        ChangeNotifierProvider(
+          create: (_) => PreferencesProvider(
+            preferencesHelper: PreferencesHelper(
+              sharedPreferences: SharedPreferences.getInstance(),
+            ),
+          ),
+        ),
+        ChangeNotifierProvider<SchedulingProvider>(
+          create: (_) => SchedulingProvider(),
+          child: const SettingScreen(),
+        ),
+      ],
+      child: Consumer<PreferencesProvider>(
+        builder: (context, provider, child) {
+          return MaterialApp(
+            navigatorKey: navigatorKey,
+            title: 'Restaurant App',
+            theme: provider.themeData,
+            builder: (context, child) {
+              return CupertinoTheme(
+                data: CupertinoThemeData(
+                  brightness: 
+                    provider.isDarkTheme ? Brightness.dark : Brightness.light,
+                ),
+                child: Material(
+                  child: child,
+                ),
+              );
+            },
+            initialRoute: SplashScreen.routeName,
+            routes: {
+              SplashScreen.routeName: (context) => const SplashScreen(),
+              OnboardingScreen.routeName: (context) => const OnboardingScreen(),
+              HomeScreen.routeName: (context) => const HomeScreen(),
+              DetailScreen.routeName: (context) => DetailScreen(
+                id: ModalRoute.of(context)?.settings.arguments as String,
+              ),
+              SearchScreen.routeName: (context) => const SearchScreen(),
+              // setting
+              // favorite
+            },
+          );
+        }
+      ),
     );
   }
 }
@@ -75,10 +117,7 @@ class _BottomNavigationBarRestoState extends State<BottomNavigationBarResto> {
   var currentTab = [
     const HomeScreen(),
     const FavoriteScreen(),
-    ChangeNotifierProvider<SchedulingProvider>(
-      create: (_) => SchedulingProvider(),
-      child: const SettingScreen(),
-    ),
+    const SettingScreen(),
   ];
 
   @override

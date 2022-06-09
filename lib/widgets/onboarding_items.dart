@@ -42,7 +42,6 @@ class OnboardingItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 100),
-      color: bgColor,
       child: Column(
         children: [
           Image.asset(image),

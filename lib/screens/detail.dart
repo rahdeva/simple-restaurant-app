@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../widgets/detail_items.dart';
 import '../data/api/api_service.dart';
 import '../provider/detail_provider.dart';
-import '../common/color.dart';
 
 class DetailScreen extends StatelessWidget{
   static const routeName = '/detail';
@@ -16,7 +15,6 @@ class DetailScreen extends StatelessWidget{
     return ChangeNotifierProvider<DetailProvider>(
       create: (_) => DetailProvider(apiService: ApiService(), id: id),
       child: Scaffold(
-        backgroundColor: bgColor,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Consumer<DetailProvider>(

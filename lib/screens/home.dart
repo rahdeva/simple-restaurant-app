@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../screens/search.dart';
-import '../data/api/api_service.dart';
-import '../provider/resto_provider.dart';
 import '../widgets/resto_list.dart';
-import '../common/color.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -14,7 +10,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       body: Column(
           children: [
             Padding(
@@ -42,10 +37,7 @@ class HomeScreen extends StatelessWidget {
                   ),
               ),
             ),
-            ChangeNotifierProvider<RestoProvider>(
-              create: (_) => RestoProvider(apiService: ApiService()),
-              child: const RestoList(),
-            ),
+            const RestoList(),
           ],
         ),
     );
