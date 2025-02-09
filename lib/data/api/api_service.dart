@@ -8,7 +8,7 @@ class ApiService {
   final String _baseUrl = 'https://restaurant-api.dicoding.dev/';
   
   Future<RestaurantResult> getRestoList() async {
-    final response = await http.get(Uri.parse(_baseUrl + "list"));
+    final response = await http.get(Uri.parse("${_baseUrl}list"));
     if (response.statusCode == 200) {
       return RestaurantResult.fromJson(json.decode(response.body));
     } else {
@@ -16,8 +16,8 @@ class ApiService {
     }
   }
 
-  Future<RestaurantDetail> getRestoDetail(final String _id) async {
-    final response = await http.get(Uri.parse(_baseUrl + "detail/" + _id));
+  Future<RestaurantDetail> getRestoDetail(final String id) async {
+    final response = await http.get(Uri.parse("${_baseUrl}detail/$id"));
     if (response.statusCode == 200) {
       return RestaurantDetail.fromJson(json.decode(response.body));
     } else {
@@ -25,9 +25,9 @@ class ApiService {
     }
   }
 
-  Future<SearchRestaurant> searchResto(final String _query) async {
-    final String _newQuery = _query.replaceAll(' ', '%20');
-    final response = await http.get(Uri.parse(_baseUrl + "search?q=" + _newQuery));
+  Future<SearchRestaurant> searchResto(final String query) async {
+    final String newQuery = query.replaceAll(' ', '%20');
+    final response = await http.get(Uri.parse("${_baseUrl}search?q=$newQuery"));
     if (response.statusCode == 200) {
       return SearchRestaurant.fromJson(json.decode(response.body));
     } else {
@@ -37,7 +37,7 @@ class ApiService {
   
   Future<RestaurantResult> postReview(String name, String id, String review) async {
     final response = await http.post(
-      Uri.parse(_baseUrl + "review"), 
+      Uri.parse("${_baseUrl}review"), 
       body: json.encode({
         'id': id,
         'name': name,

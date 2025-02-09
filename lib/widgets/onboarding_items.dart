@@ -78,8 +78,8 @@ class OnboardingItems extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: orangeColor,
-                    onPrimary: Colors.white,
+                    backgroundColor: orangeColor,
+                    foregroundColor: Colors.white,
                     shape: const StadiumBorder()),
                 onPressed: () => onPress(context),
                 child: Text(
