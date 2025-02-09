@@ -38,7 +38,10 @@ class MenuItems extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16.0, top: 6.0),
               child: Text(
                 menu[i].name!,
-                style: const TextStyle(color: Colors.white),
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600
+                ),
               )
             ),
           );

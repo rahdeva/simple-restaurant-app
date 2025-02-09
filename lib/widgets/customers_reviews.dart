@@ -25,9 +25,18 @@ class CustomerReviews extends StatelessWidget {
               color: Colors.white,
               child: ListTile(
                 title: Text(review[i].name!,
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text(review[i].review!),
-                trailing: Text(review[i].date!),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold
+                  )
+                ),
+                subtitle: Text(
+                  review[i].review!,
+                  style: Theme.of(context).textTheme.labelMedium
+                ),
+                trailing: Text(
+                  review[i].date!,
+                  style: Theme.of(context).textTheme.labelMedium
+                ),
                 dense: true,
               ),
             );

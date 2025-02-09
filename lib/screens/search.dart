@@ -33,9 +33,8 @@ class _SearchScreenState extends State<SearchScreen> {
             iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
             elevation: 0, 
-            titleTextStyle: const TextStyle(
+            titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
               color: Colors.black, 
-              fontSize: 18.0, 
               fontWeight: FontWeight.bold,
             ),
           ),

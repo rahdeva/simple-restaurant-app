@@ -26,7 +26,7 @@ class RestaurantItems extends StatelessWidget {
             Hero(
               tag: resto.id!,
               child: Container(
-                width: 200,
+                width: 160,
                 height: 120,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(5.0)),
@@ -47,8 +47,10 @@ class RestaurantItems extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       resto.name!,
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontSize: 16.0, 
+                        fontWeight: FontWeight.bold
+                      ),
                     ),
                     const SizedBox(height: 10),
                     Row(

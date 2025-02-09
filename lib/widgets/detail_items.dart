@@ -60,7 +60,7 @@ class DetailItems extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24.0),
             child: Text(
               detail.name,
-              style: const TextStyle(
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -117,7 +117,7 @@ class TitleWidgets extends StatelessWidget {
       padding: const EdgeInsets.only(left: 24.0),
       child: Text(
         text,
-        style: const TextStyle(
+        style: Theme.of(context).textTheme.titleMedium?.copyWith(
           fontSize: 18.0,
           fontWeight: FontWeight.bold,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/common/themes.dart';
 import '../screens/search.dart';
 import '../screens/onboarding.dart';
 import '../screens/home.dart';
@@ -16,10 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Restaurant App',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: RestaurantTheme.lightTheme,
+      darkTheme: RestaurantTheme.darkTheme,
+      themeMode: ThemeMode.system,
       initialRoute: SplashScreen.routeName,
+      debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
         OnboardingScreen.routeName: (context) => const OnboardingScreen(),

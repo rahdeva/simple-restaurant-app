@@ -36,59 +36,64 @@ class OnboardingItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 100),
       color: bgColor,
-      child: Column(
-        children: [
-          Image.asset(image),
-          const SizedBox(height: 40),
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ), 
-          const SizedBox(height: 40),
-          Text(
-            subtitle,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 18.0,
-            ),
-          ),
-          const SizedBox(height: 40),
-          Center(
-            child: SmoothPageIndicator(
-              controller: controller,
-              count: 2,
-              effect: const WormEffect(
-                spacing: 16,
-                dotColor: Colors.black54,
-                activeDotColor: yellowColor,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(image),
+            const SizedBox(height: 40),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
               ),
-              onDotClicked: (index) => controller.animateToPage(index,
-                  duration: const Duration(milliseconds: 500), curve: Curves.easeIn),
+            ), 
+            const SizedBox(height: 40),
+            Text(
+              subtitle,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontSize: 18.0,
+              ),
             ),
-          ),
-          const SizedBox(height: 40),
-          SizedBox(
-            width: 200,
-            height: 50,
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: orangeColor,
-                    foregroundColor: Colors.white,
-                    shape: const StadiumBorder()),
-                onPressed: () => onPress(context),
-                child: Text(
-                  textButton,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0),
-                )
+            const SizedBox(height: 40),
+            Center(
+              child: SmoothPageIndicator(
+                controller: controller,
+                count: 2,
+                effect: const WormEffect(
+                  spacing: 16,
+                  dotColor: Colors.black54,
+                  activeDotColor: yellowColor,
+                ),
+                onDotClicked: (index) => controller.animateToPage(index,
+                    duration: const Duration(milliseconds: 500), curve: Curves.easeIn),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 40),
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: orangeColor,
+                      foregroundColor: Colors.white,
+                      shape: const StadiumBorder()),
+                  onPressed: () => onPress(context),
+                  child: Text(
+                    textButton,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold, 
+                      color: Colors.white
+                    ),
+                  )
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

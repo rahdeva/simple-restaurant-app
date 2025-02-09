@@ -60,8 +60,12 @@ class _AddReviewsState extends State<AddReviews> {
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
-                child:
-                    const Text('CANCEL', style: TextStyle(color: Colors.white)),
+                child: Text(
+                  'CANCEL',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: Colors.white
+                  )
+                ),
                 onPressed: () {
                   setState(() {
                     Navigator.pop(context);
@@ -72,7 +76,12 @@ class _AddReviewsState extends State<AddReviews> {
                 style: ButtonStyle(
                   backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
-                child: const Text('OK', style: TextStyle(color: Colors.white)),
+                child: Text(
+                  'OK', 
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: Colors.white
+                  )
+                ),
                 onPressed: () {
                   setState(() {
                     debugPrint(_nameC.text);
