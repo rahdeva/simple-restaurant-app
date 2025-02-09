@@ -11,7 +11,7 @@ class RestoList extends StatelessWidget {
     return Consumer<RestoProvider>(
       builder: (context, state, _) {
         if (state.state == ResultState.loading) {
-          return const Center(child: CircularProgressIndicator());
+          return Expanded(child: const Center(child: CircularProgressIndicator()));
         } else if (state.state == ResultState.hasData) {
           return Expanded(
             child: ListView.builder(

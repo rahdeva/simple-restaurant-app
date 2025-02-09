@@ -22,7 +22,10 @@ class DetailScreen extends StatelessWidget{
             child: Consumer<DetailProvider>(
               builder: (context, state, _) {
                 if (state.state == ResultState.loading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    child: const Center(child: CircularProgressIndicator())
+                  );
                 } else if (state.state == ResultState.hasData) {
                   var detail = state.result.restaurant;
                   return DetailItems(detail: detail);

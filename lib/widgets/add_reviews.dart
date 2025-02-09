@@ -75,7 +75,9 @@ class _AddReviewsState extends State<AddReviews> {
                 child: const Text('OK', style: TextStyle(color: Colors.white)),
                 onPressed: () {
                   setState(() {
-                    debugPrint("Belum jadi :)");
+                    debugPrint(_nameC.text);
+                    debugPrint(_reviewC.text);
+                    debugPrint("on progress");
                     Navigator.pop(context);
                   });
                 },
