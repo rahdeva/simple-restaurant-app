@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AddReviews extends StatefulWidget {
   final BuildContext ctx;
   final String id;
-  const AddReviews({Key? key, required this.ctx, required this.id}) : super(key: key);
+  const AddReviews({super.key, required this.ctx, required this.id});
   
   @override
   State<AddReviews> createState() => _AddReviewsState();
@@ -58,7 +58,7 @@ class _AddReviewsState extends State<AddReviews> {
             actions: <Widget>[
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 child:
                     const Text('CANCEL', style: TextStyle(color: Colors.white)),
@@ -70,12 +70,12 @@ class _AddReviewsState extends State<AddReviews> {
               ),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.green),
+                  backgroundColor: WidgetStateProperty.all(Colors.green),
                 ),
                 child: const Text('OK', style: TextStyle(color: Colors.white)),
                 onPressed: () {
                   setState(() {
-                    print("Belum jadi :)");
+                    debugPrint("Belum jadi :)");
                     Navigator.pop(context);
                   });
                 },

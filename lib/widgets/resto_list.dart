@@ -4,7 +4,7 @@ import 'package:restaurant_app/provider/resto_provider.dart';
 import 'package:restaurant_app/widgets/resto_items.dart';
 
 class RestoList extends StatelessWidget {
-  const RestoList({Key? key }) : super(key: key);
+  const RestoList({super.key });
 
   @override
   Widget build(BuildContext context) {

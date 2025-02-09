@@ -6,7 +6,7 @@ class RestaurantItems extends StatelessWidget {
   final Restaurant resto;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/medium/";
 
-  const RestaurantItems({Key? key, required this.resto}) : super(key: key);
+  const RestaurantItems({super.key, required this.resto});
 
   @override
   Widget build(BuildContext context) {

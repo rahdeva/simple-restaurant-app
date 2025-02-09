@@ -11,13 +11,13 @@ class OnboardingItems extends StatelessWidget {
   String textButton;
   final PageController controller;
 
-  OnboardingItems({Key? key, 
+  OnboardingItems({super.key, 
     required this.image, 
     required this.title,
     required this.subtitle,
     required this.textButton,
     required this.controller
-  }) : super(key: key);
+  });
 
   void onPress(context){
     (textButton == "Next")

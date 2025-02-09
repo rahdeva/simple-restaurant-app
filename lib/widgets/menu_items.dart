@@ -6,7 +6,7 @@ import '../common/color.dart';
 class MenuItems extends StatelessWidget {
   final List<Category> menu; 
 
-  const MenuItems({Key? key, required this.menu}) : super(key: key);
+  const MenuItems({super.key, required this.menu});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class MenuItems extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  colors.withOpacity(0.7),
+                  colors.withValues(alpha: 0.7),
                   colors,
                 ],
               ),

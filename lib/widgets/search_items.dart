@@ -6,7 +6,7 @@ class SearchResultItems extends StatelessWidget {
   final Restaurant resto;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/medium/";
 
-  const SearchResultItems({Key? key, required this.resto}) : super(key: key);
+  const SearchResultItems({super.key, required this.resto});
 
   @override
   Widget build(BuildContext context) {

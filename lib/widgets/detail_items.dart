@@ -7,7 +7,7 @@ class DetailItems extends StatelessWidget {
   final Restaurant detail;
   final String picsURL = "https://restaurant-api.dicoding.dev/images/large/";
 
-  const DetailItems({required this.detail, Key? key})  : super(key: key);
+  const DetailItems({required this.detail, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +108,7 @@ class DetailItems extends StatelessWidget {
 
 class TitleWidgets extends StatelessWidget {
   final String text;
-  const TitleWidgets({Key? key, required this.text}) : super(key: key);
+  const TitleWidgets({super.key, required this.text});
   
   @override
   Widget build(BuildContext context) {

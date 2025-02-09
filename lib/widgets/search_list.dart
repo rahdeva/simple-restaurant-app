@@ -4,7 +4,7 @@ import '../provider/search_provider.dart';
 import '../widgets/search_items.dart';
 
 class SearchResultList extends StatelessWidget {
-  const SearchResultList({Key? key }) : super(key: key);
+  const SearchResultList({super.key });
 
   @override
   Widget build(BuildContext context) {

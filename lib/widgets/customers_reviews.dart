@@ -6,7 +6,7 @@ class CustomerReviews extends StatelessWidget {
   final List<CustomerReview> review; 
   final String id;
 
-  const CustomerReviews({Key? key, required this.review, required this.id}) : super(key: key);
+  const CustomerReviews({super.key, required this.review, required this.id});
 
   @override
   Widget build(BuildContext context) {

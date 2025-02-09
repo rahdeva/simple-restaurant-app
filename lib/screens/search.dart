@@ -7,7 +7,7 @@ import 'package:restaurant_app/widgets/search_list.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search';
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
