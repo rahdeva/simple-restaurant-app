@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../common/color.dart';
 import '../screens/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -26,9 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       body: Center(
-        child: Image.asset('assets/images/logo.png'),
+        child: Image.asset(
+          'assets/images/logo.png',
+        ),
       ),
     );
   }

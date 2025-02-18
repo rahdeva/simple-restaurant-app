@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/common/color.dart';
 import 'package:restaurant_app/common/text_styles.dart';
 
 class RestaurantTheme {
@@ -41,6 +42,42 @@ class RestaurantTheme {
       useMaterial3: true,
       appBarTheme: _appBarTheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      scaffoldBackgroundColor: bgColor,
+      colorScheme: ColorScheme.light(
+        primary: Colors.blue,
+        secondary: Colors.orange,
+        surface: Colors.grey[200]!,
+      ),
+      cardTheme: CardTheme(
+        color: Colors.white,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.grey[100],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+      ),
+      dialogTheme: DialogTheme(
+        backgroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
     );
   }
   
@@ -51,6 +88,42 @@ class RestaurantTheme {
       useMaterial3: true,
       appBarTheme: _appBarTheme,
       visualDensity: VisualDensity.adaptivePlatformDensity,
+      scaffoldBackgroundColor: Colors.grey.shade800,
+      colorScheme: ColorScheme.dark(
+        primary: Colors.teal,
+        secondary: Colors.amber,
+        surface: Colors.grey.shade900,
+      ),
+      cardTheme: CardTheme(
+        color: Colors.grey.shade700,
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.teal,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.grey.shade700,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: Colors.teal),
+        ),
+      ),
+      dialogTheme: DialogTheme(
+        backgroundColor: Colors.grey.shade700,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      ),
     );
   }
 }

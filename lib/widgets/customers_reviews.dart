@@ -22,7 +22,6 @@ class CustomerReviews extends StatelessWidget {
               shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10.0),
               ),
-              color: Colors.white,
               child: ListTile(
                 title: Text(review[i].name!,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(

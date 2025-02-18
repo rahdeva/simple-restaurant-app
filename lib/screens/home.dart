@@ -4,7 +4,6 @@ import '../screens/search.dart';
 import '../data/api/api_service.dart';
 import '../provider/resto_provider.dart';
 import '../widgets/resto_list.dart';
-import '../common/color.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
@@ -14,12 +13,16 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor,
       body: Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: Image.asset("assets/images/textLogo.png")
+              child: Image.asset(
+                "assets/images/textLogo.png",
+                color: Theme.of(context).brightness == Brightness.dark 
+                  ? Colors.white 
+                  : null,
+              )
             ),
             GestureDetector(
               onTap: () => Navigator.of(context).push(
