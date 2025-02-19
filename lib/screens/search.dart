@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:restaurant_app/common/color.dart';
 import 'package:restaurant_app/data/api/api_service.dart';
 import 'package:restaurant_app/provider/search_provider.dart';
 import 'package:restaurant_app/widgets/search_list.dart';
@@ -23,18 +22,17 @@ class _SearchScreenState extends State<SearchScreen> {
       create: (_) => SearchProvider(apiService: ApiService()),
       child: Consumer<SearchProvider>(builder: (context, state, _) {
         return Scaffold(
-          backgroundColor: bgColor,
           appBar: AppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              icon: Icon(
+                Icons.arrow_back, 
+              ),
               onPressed: () => Navigator.of(context).pop(),
             ), 
             title: const Text("Search Restaurants"),
-            iconTheme: const IconThemeData(color: Colors.black),
             backgroundColor: Colors.transparent,
             elevation: 0, 
             titleTextStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: Colors.black, 
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -44,10 +42,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.all(24.0),
                 child: TextField(
                   onChanged: (value) {
-                    setState(() {
-                      query = value;
-                    });
-                    state.fetchSearchedResto(value);
+                    state.query = value;
+                    _controller.text = value;
                   },
                   autofocus: true,
                   controller: _controller,
@@ -60,7 +56,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               Expanded(
-                child: query.isEmpty
+                child: state.query.isEmpty
                   ? const Center(child: Text('Cari restaurant favoritmu!'))
                   : const SearchResultList(),
               )

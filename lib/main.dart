@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Restaurant App',
       theme: RestaurantTheme.lightTheme,
       darkTheme: RestaurantTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       initialRoute: SplashScreen.routeName,
       debugShowCheckedModeBanner: false,
       routes: {

@@ -26,11 +26,6 @@ class _AddReviewsState extends State<AddReviews> {
               child: Column(
                 children: [
                   TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        name = value;
-                      });
-                    },
                     controller: _nameC,
                     decoration: const InputDecoration(
                       labelText: "Name",
@@ -38,11 +33,6 @@ class _AddReviewsState extends State<AddReviews> {
                     ),
                   ),
                   TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        review = value;
-                      });
-                    },
                     controller: _reviewC,
                     decoration: const InputDecoration(
                       labelText: "Review",
@@ -67,9 +57,7 @@ class _AddReviewsState extends State<AddReviews> {
                   )
                 ),
                 onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
+                  Navigator.pop(context);
                 },
               ),
               ElevatedButton(
@@ -83,12 +71,10 @@ class _AddReviewsState extends State<AddReviews> {
                   )
                 ),
                 onPressed: () {
-                  setState(() {
-                    debugPrint(_nameC.text);
-                    debugPrint(_reviewC.text);
-                    debugPrint("on progress");
-                    Navigator.pop(context);
-                  });
+                  debugPrint(_nameC.text);
+                  debugPrint(_reviewC.text);
+                  debugPrint("on progress");
+                  Navigator.pop(context);
                 },
               ),
             ],

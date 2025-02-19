@@ -15,10 +15,19 @@ class SearchProvider extends ChangeNotifier {
   late SearchRestaurant _restoResult;
   late ResultState _state;
   String _message = '';
+  String _query = '';
 
   String get message => _message;
   SearchRestaurant get result => _restoResult;
   ResultState get state => _state;
+  String get query => _query;
+
+  set query(String value) {
+    print('query: $query');
+    _query = value;
+    fetchSearchedResto(value);
+    notifyListeners();
+  }
 
   Future<dynamic> fetchSearchedResto(String query) async {
     try {

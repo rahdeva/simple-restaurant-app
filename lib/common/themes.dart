@@ -23,24 +23,26 @@ class RestaurantTheme {
     );
   }
 
-  static AppBarTheme get _appBarTheme {
-    return AppBarTheme(
-      toolbarTextStyle: _textTheme.titleLarge,
-      shape: const BeveledRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(14),
-          bottomRight: Radius.circular(14),
-        ),
-      ),
-    );
-  }
-
   static ThemeData get lightTheme {
     return ThemeData(
       brightness: Brightness.light,
       textTheme: _textTheme,
       useMaterial3: true,
-      appBarTheme: _appBarTheme,
+      appBarTheme: AppBarTheme(
+        toolbarTextStyle: _textTheme.titleLarge,
+        iconTheme: IconThemeData(
+          color: Colors.black
+        ),
+        titleTextStyle: TextStyle(
+          color: Colors.black
+        ),
+        shape: const BeveledRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(14),
+            bottomRight: Radius.circular(14),
+          ),
+        ),
+      ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: bgColor,
       colorScheme: ColorScheme.light(
@@ -86,7 +88,21 @@ class RestaurantTheme {
       brightness: Brightness.dark,
       textTheme: _textTheme,
       useMaterial3: true,
-      appBarTheme: _appBarTheme,
+      appBarTheme: AppBarTheme(
+        toolbarTextStyle: _textTheme.titleLarge,
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        titleTextStyle: TextStyle(
+          color: Colors.white
+        ),
+        shape: const BeveledRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(14),
+            bottomRight: Radius.circular(14),
+          ),
+        ),
+      ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: Colors.grey.shade800,
       colorScheme: ColorScheme.dark(
