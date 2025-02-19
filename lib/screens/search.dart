@@ -36,31 +36,33 @@ class _SearchScreenState extends State<SearchScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          body: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(24.0),
-                child: TextField(
-                  onChanged: (value) {
-                    state.query = value;
-                    _controller.text = value;
-                  },
-                  autofocus: true,
-                  controller: _controller,
-                  decoration: const InputDecoration(
-                      labelText: "Search",
-                      hintText: "Search",
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+          body: SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(24.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      state.query = value;
+                      _controller.text = value;
+                    },
+                    autofocus: true,
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                        labelText: "Search",
+                        hintText: "Search",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+                  ),
                 ),
-              ),
-              Expanded(
-                child: state.query.isEmpty
-                  ? const Center(child: Text('Cari restaurant favoritmu!'))
-                  : const SearchResultList(),
-              )
-            ],
+                Expanded(
+                  child: state.query.isEmpty
+                    ? const Center(child: Text('Cari restaurant favoritmu!'))
+                    : const SearchResultList(),
+                )
+              ],
+            ),
           ),
         );
       }),

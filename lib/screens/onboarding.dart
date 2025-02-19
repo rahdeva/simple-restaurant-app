@@ -21,24 +21,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: controller,
-        children: [
-          OnboardingItems(
-            image: "assets/images/onboarding-1.png",
-            title: "Restaurant\nRecommendation", 
-            subtitle: "Don't know where to eat?\nWe'll suggest best restaurant\nfor you!",
-            textButton: "Next",
-            controller: controller
-          ),
-          OnboardingItems(
-            image: "assets/images/onboarding-2.png",
-            title: "Detail\nRestaurants", 
-            subtitle: "You can see the detail\neach of the restaurants\n ",
-            textButton: "Get Started",
-            controller: controller
-          ),
-        ],
+      body: SafeArea(
+        child: PageView(
+          controller: controller,
+          children: [
+            OnboardingItems(
+              image: "assets/images/onboarding-1.png",
+              title: "Restaurant\nRecommendation", 
+              subtitle: "Don't know where to eat?\nWe'll suggest best restaurant\nfor you!",
+              textButton: "Next",
+              controller: controller
+            ),
+            OnboardingItems(
+              image: "assets/images/onboarding-2.png",
+              title: "Detail\nRestaurants", 
+              subtitle: "You can see the detail\neach of the restaurants\n ",
+              textButton: "Get Started",
+              controller: controller
+            ),
+          ],
+        ),
       ),
     );
   }

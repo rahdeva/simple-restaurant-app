@@ -13,45 +13,47 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: Image.asset(
-                "assets/images/textLogo.png",
-                color: Theme.of(context).brightness == Brightness.dark 
-                  ? Colors.white 
-                  : null,
-              )
-            ),
-            GestureDetector(
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const SearchScreen()
+      body: SafeArea(
+        child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Image.asset(
+                  "assets/images/textLogo.png",
+                  color: Theme.of(context).brightness == Brightness.dark 
+                    ? Colors.white 
+                    : null,
                 )
               ),
-              child: Container(
-                padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
-                child: const TextField(
-                    enabled: false,
-                    decoration: InputDecoration(
-                      labelText: "Search",
-                      hintText: "Search",
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(25.0))
-                      )
+              GestureDetector(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => const SearchScreen()
+                  )
+                ),
+                child: Container(
+                  padding: const EdgeInsets.only(left: 24.0, right: 24.0, bottom: 16.0),
+                  child: const TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Search",
+                        hintText: "Search",
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25.0))
+                        )
+                      ),
                     ),
-                  ),
+                ),
               ),
-            ),
-            ChangeNotifierProvider<RestoProvider>(
-              create: (_) => RestoProvider(apiService: ApiService()),
-              child: const RestoList(),
-            ),
-            const SizedBox(height: 24.0,)
-          ],
-        ),
+              ChangeNotifierProvider<RestoProvider>(
+                create: (_) => RestoProvider(apiService: ApiService()),
+                child: const RestoList(),
+              ),
+              const SizedBox(height: 24.0,)
+            ],
+          ),
+      ),
     );
   }
 }
