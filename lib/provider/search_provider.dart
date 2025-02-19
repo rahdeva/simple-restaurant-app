@@ -23,7 +23,6 @@ class SearchProvider extends ChangeNotifier {
   String get query => _query;
 
   set query(String value) {
-    print('query: $query');
     _query = value;
     fetchSearchedResto(value);
     notifyListeners();
