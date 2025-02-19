@@ -55,7 +55,7 @@ class RestaurantItems extends StatelessWidget {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        const Icon(Icons.location_on_sharp),
+                        const Icon(Icons.location_city_rounded),
                         Text(resto.city!)
                       ],
                     ),

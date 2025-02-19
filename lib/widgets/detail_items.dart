@@ -71,15 +71,24 @@ class DetailItems extends StatelessWidget {
           child: Column(
             children: [
               Row(
+                spacing: 8,
                 children: [
-                  const Icon(Icons.location_on_sharp),
-                  Text(detail.city)
+                  const Icon(Icons.location_city_rounded),
+                  Expanded(child: Text(detail.city))
                 ],
               ),
               Row(
+                spacing: 8,
+                children: [
+                  const Icon(Icons.location_on_sharp),
+                  Expanded(child: Text(detail.address))
+                ],
+              ),
+              Row(
+                spacing: 8,
                 children: [
                   const Icon(Icons.star),
-                  Text(detail.rating.toString())
+                  Expanded(child: Text(detail.rating.toString()))
                 ],
               ),
             ],
